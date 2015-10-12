@@ -1,0 +1,140 @@
+package com.jacek.stock;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;	
+/**
+ * The class emulates a database.
+ * The trades are kept in a collection .
+ * The repository is a singleton
+ * @author Jacek
+ *
+ */
+
+public class TransactionRepository {
+	
+
+	List<TradeTransaction> trades = new ArrayList<>();
+	//List<Stock> stocks = new ArrayList<>();
+	Stocks stocks;
+	
+	Unmarshaller unmar;
+	
+	TradeTransaction transaction;
+	
+	
+	private TransactionRepository(String symbol) throws JAXBException{
+		
+		try{
+	
+		JAXBContext jc = JAXBContext.newInstance(Stocks.class);
+		unmar = jc.createUnmarshaller();
+		stocks = (Stocks) unmar.unmarshal(new File("Stocks.xml"));
+			
+		/*
+		 *  Go through all the stock and find the matching Symbol
+		 * 
+		 */
+			
+		
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			
+		}
+		
+	   	
+	}
+	
+	
+    public void saveStock(Stock stock){
+		
+		transaction = new TradeTransaction();
+		
+		for(int i = 0 ; i<stocks.getStocks().size(); i++){
+			
+			if(stocks.getStocks().get(i).getSymbol().trim().equals(stock.getSymbol().trim())){
+					
+			   transaction.getStocks().add(stock);
+			    	
+			}
+		}
+			
+	}
+	
+	
+	public void openTransaction(){
+		
+		transaction = new TradeTransaction();
+			
+	}
+	
+	public void closeTransaction(){
+		
+		trades.add(transaction);
+		transaction = null;
+		
+	}
+	
+	
+	
+	
+	
+	
+	public List<TradeTransaction> getTrades() {
+		return trades;
+	}
+
+
+	public void setTrades(List<TradeTransaction> trades) {
+		this.trades = trades;
+	}
+
+
+	public Stocks getStocks() {
+		return stocks;
+	}
+
+
+	public void setStocks(Stocks stocks) {
+		this.stocks = stocks;
+	}
+
+
+	public Unmarshaller getUnmar() {
+		return unmar;
+	}
+
+
+	public void setUnmar(Unmarshaller unmar) {
+		this.unmar = unmar;
+	}
+
+	private static TransactionRepository instance = null;
+	
+	
+	public static TransactionRepository getInstance(String symbol) throws JAXBException{
+		
+		if(instance == null){
+		
+			 instance = new TransactionRepository(symbol);
+			
+			 return instance;
+			 
+		} else {
+			
+			 return instance;
+		}
+		
+		 	
+	}
+	
+	
+	
+	
+	
+	
+
+}
