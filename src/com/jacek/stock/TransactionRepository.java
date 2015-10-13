@@ -16,17 +16,16 @@ import javax.xml.bind.JAXBException;
 
 public class TransactionRepository {
 	
-
 	List<TradeTransaction> trades = new ArrayList<>();
 	//List<Stock> stocks = new ArrayList<>();
 	Stocks stocks;
 	
 	Unmarshaller unmar;
 	
-	TradeTransaction transaction;
+	TradeTransaction transaction = null;
 	
 	
-	private TransactionRepository(String symbol) throws JAXBException{
+	private TransactionRepository() throws JAXBException{
 		
 		try{
 	
@@ -47,6 +46,15 @@ public class TransactionRepository {
 		
 	   	
 	}
+	
+	
+  public void saveTransaction(){
+		
+	trades.add(transaction);
+			
+	}
+	
+	
 	
 	
     public void saveStock(Stock stock){
@@ -115,11 +123,11 @@ public class TransactionRepository {
 	private static TransactionRepository instance = null;
 	
 	
-	public static TransactionRepository getInstance(String symbol) throws JAXBException{
+	public static TransactionRepository getInstance() throws JAXBException{
 		
 		if(instance == null){
 		
-			 instance = new TransactionRepository(symbol);
+			 instance = new TransactionRepository();
 			
 			 return instance;
 			 
