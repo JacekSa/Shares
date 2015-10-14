@@ -19,8 +19,6 @@ public class InputController {
 		repo.openTransaction();
 		runTransaction();
 		
-		
-		
 		while(!transactionsFinished){
 		
 		while(("Y").equals(input)){
@@ -85,6 +83,10 @@ public class InputController {
 		System.out.println("Type in the Stock price :");
 		BigDecimal bdec = new BigDecimal(scanner.nextLine());
 		stock.setPrice(bdec);
+		
+		/*
+		 * Calculate the dividend etc. and save it in a stock object
+		 */
 		
 		
 		repo.openTransaction();

@@ -33,10 +33,7 @@ public class TransactionRepository {
 		unmar = jc.createUnmarshaller();
 		stocks = (Stocks) unmar.unmarshal(new File("Stocks.xml"));
 			
-		/*
-		 *  Go through all the stock and find the matching Symbol
-		 * 
-		 */
+		
 			
 		
 		} catch (JAXBException e) {
@@ -59,7 +56,11 @@ public class TransactionRepository {
 	
     public void saveStock(Stock stock){
 		
-		transaction = new TradeTransaction();
+		/*
+		 *  Go through all the stock and find the matching Symbol
+		 * 
+		 */
+		
 		
 		for(int i = 0 ; i<stocks.getStocks().size(); i++){
 			
