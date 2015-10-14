@@ -65,7 +65,12 @@ public class TransactionRepository {
 		for(int i = 0 ; i<stocks.getStocks().size(); i++){
 			
 			if(stocks.getStocks().get(i).getSymbol().trim().equals(stock.getSymbol().trim())){
-					
+				
+				
+			   stock.setLastDivident(stocks.getStocks().get(i).getLastDivident());
+			   stock.setFixedDividend(stocks.getStocks().get(i).getFixedDividend());
+			   stock.setParValue(stocks.getStocks().get(i).getParValue());
+			   stock.setType(stocks.getStocks().get(i).getType());
 			   transaction.getStocks().add(stock);
 			    	
 			}
