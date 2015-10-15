@@ -28,6 +28,12 @@ public class DataCalculatorImpl implements DataCalculator {
 	public BigDecimal   calculateDividendYieldCommon(Stock stock){
 			
 		System.out.println(stock.getLastDivident());
+		
+		if(stock.getLastDivident() == null){ 
+			
+		return new BigDecimal(0);
+		}
+		
 		return stock.getLastDivident().divide(stock.getPrice(),RoundingMode.UP);
 			
 	}
@@ -49,8 +55,16 @@ public class DataCalculatorImpl implements DataCalculator {
 		
 		BigDecimal priceDecimal = stock.getPrice();
 		BigDecimal dividendDecimal = stock.getLastDivident();
+		BigDecimal ratio;
 		
-		BigDecimal ratio = priceDecimal.divide(dividendDecimal,RoundingMode.HALF_DOWN);
+		if(dividendDecimal == null) {  
+			
+			ratio = new BigDecimal(0);
+		} else {
+		
+		    ratio = priceDecimal.divide(dividendDecimal,RoundingMode.HALF_DOWN);
+		
+		}
 	
 		return ratio;
 	
@@ -108,6 +122,7 @@ public class DataCalculatorImpl implements DataCalculator {
 	    SumOfLogs logs = new SumOfLogs();
 	    
 	    Double[] stockArr ;
+	    
 	    stockArr = (Double[]) list.toArray(new Double[list.size()]);
 	    
 	    logs.evaluate(ArrayUtils.toPrimitive(stockArr) , 0, stockArr.length);

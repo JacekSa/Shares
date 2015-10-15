@@ -86,8 +86,6 @@ public class InputController {
 		stock.setSymbol(input);
 		stock.setTimestamp(new Date());
 		
-		
-		
 		System.out.println("Type in the Stock price :");
 		BigDecimal bdec = new BigDecimal(scanner.nextLine());
 		stock.setPrice(bdec);
