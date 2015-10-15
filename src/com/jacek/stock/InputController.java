@@ -108,7 +108,7 @@ public class InputController {
 		
 		stock.setVolumeWeightedStockPrice(calculator.calcVWSP(trades));
 		
-		
+		repo.setAllSharedIndex(calculator.calculateAllShareIndex(trades));
 		
 		repo.openTransaction();
 		repo.saveStock(stock);

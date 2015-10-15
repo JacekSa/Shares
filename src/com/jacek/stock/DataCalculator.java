@@ -49,9 +49,9 @@ public class DataCalculator {
 	}
 	
 	
-	public GeometricMean calculateAllShareIndex(List<TradeTransaction> trades){
+	public double calculateAllShareIndex(List<TradeTransaction> trades){
 		
-		double[] values;
+		
 		ArrayList<Double> list = new ArrayList<>();
 		
 		for(TradeTransaction trade : trades) {
@@ -80,7 +80,7 @@ public class DataCalculator {
 	
 	
 	
-    public GeometricMean calcGeometricMean(ArrayList<Double> list){
+    public double calcGeometricMean(ArrayList<Double> list){
 		
 	    SumOfLogs logs = new SumOfLogs();
 	    
@@ -89,7 +89,11 @@ public class DataCalculator {
 	    
 	    logs.evaluate(ArrayUtils.toPrimitive(stockArr) , 0, stockArr.length);
 	
-		return new GeometricMean(logs);
+	    GeometricMean mean = new GeometricMean();
+	    
+	    mean.setSumLogImpl(logs);
+	    
+		return mean.getResult();
 		
 	}
     
