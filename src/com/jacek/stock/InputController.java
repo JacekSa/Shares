@@ -86,6 +86,7 @@ public class InputController {
 		
 		/*
 		 * Calculate the dividend etc. and save it in a stock object
+		 * 
 		 */
 		
 		

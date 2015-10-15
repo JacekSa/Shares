@@ -1,6 +1,7 @@
 package com.jacek.stock;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *  The class is a utility for performing all
@@ -14,12 +15,10 @@ import java.math.BigDecimal;
 public class DataCalculator {
 	
 	
-	//dividend yield
-	//p/eration
 	
 	public BigDecimal   calculateDividendYieldCommon(Stock stock){
 			
-		return new BigDecimal(stock.getLastDivident()).divide(stock.getPrice());
+		return stock.getLastDivident().divide(stock.getPrice(),RoundingMode.UP);
 			
 	}
 	
@@ -28,25 +27,25 @@ public class DataCalculator {
 		BigDecimal fixDivid = new BigDecimal(stock.getFixedDividend());
 		BigDecimal parValue = new BigDecimal(stock.getParValue());
 		
-		return fixDivid.multiply(parValue).divide(stock.getPrice());
+		return fixDivid.multiply(parValue).divide(stock.getPrice(),RoundingMode.HALF_DOWN);
 			
 	}
 	
-	public BigDecimal   calculatePERatio(String price ,String dividend ){
+	public BigDecimal calculatePERatio(String price ,String dividend ){
 		
 		BigDecimal priceDecimal = new BigDecimal(price);
 		BigDecimal dividendDecimal = new BigDecimal(price);
 		
-		BigDecimal ratio = priceDecimal.divide(dividendDecimal);
+		BigDecimal ratio = priceDecimal.divide(dividendDecimal,RoundingMode.HALF_DOWN);
 	
 		return ratio;
 	
 	}
 	
 	
-	public BigDecimal   calculateAllShareIndex(){
-		return null;
+	public BigDecimal calculateAllShareIndex(){
 		
+		return null;
 		
 	}
 	

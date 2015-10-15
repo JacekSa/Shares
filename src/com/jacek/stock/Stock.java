@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
-
 @XmlRootElement(namespace = "com.jacek.stock.Stocks")
 
 public class Stock {
@@ -18,13 +17,13 @@ public class Stock {
  String  symbol = null;
  
  String type;
-	String lastDivident;
-	String fixedDividend;
-	String parValue;
+ BigDecimal lastDivident;
+ String fixedDividend;
+ String parValue;
 
  
  
-	public String getType() {
+public String getType() {
 	return type;
 }
 	
@@ -32,14 +31,16 @@ public class Stock {
 public void setType(String type) {
 	this.type = type;
 }
-public String getLastDivident() {
+public BigDecimal getLastDivident() {
 	return lastDivident;
 }
 
 @XmlElement 
-public void setLastDivident(String lastDivident) {
+public void setLastDivident(BigDecimal lastDivident) {
 	this.lastDivident = lastDivident;
 }
+
+
 public String getFixedDividend() {
 	return fixedDividend;
 }
@@ -86,8 +87,5 @@ public void setPrice(BigDecimal price) {
 	this.price = price;
 }
 	
-	
 
- 
- 
 }

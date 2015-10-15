@@ -1,13 +1,24 @@
  
  After reading the requirements the following assumptions were made :
  
- -User needs to be able to insert a price . A console based output will be provided .
- -Each time a user inserts a data for a stock (price,symbol) it is a sale/buy action
+ - User needs to be able to insert a price . A console based output will be provided .
+ - Each time a user inserts a data for a stock (price,symbol) it is a sale/buy action .
  and the sale/buy indicator must be provided .
  
- -user must control the end and a start of each transaction . Each transaction has some
+ - User must control the end and a start of each transaction . Each transaction has some
  traded stocks in it (bought or sold) . 
  
-  1 . I have developed a test which will check if a proper transaction object structure is created .
-  2 . I have developed a test which will check if stocks objects are created correctly  .   
+ - The stocks are persisted in an xml file for validation and the additional data storage .
+ 
+ workflow : 
+ 
+ -  I have developed a test which will check if a proper transaction object structure is created .
+  
+ -  I have developed a test which will check if stocks objects are created correctly  .  
+ 
+ -  Input logic was created .
+ 
+ 
+ 
+  
   
