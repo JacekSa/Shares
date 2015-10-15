@@ -10,13 +10,27 @@
  
  - The stocks are persisted in an xml file for validation and the additional data storage .
  
+ - The application should be modular which each module responsible for a single piece of functionality :
+   Financial data calculation , Trades , Stock , Data Input Module .
+   
+   Using a divide and conquer strategy allows to address all the requirements one by one , developinh
+   the code in each of the modules .
+   
+ 
  workflow : 
  
  -  I have developed a test which will check if a proper transaction object structure is created .
   
- -  I have developed a test which will check if stocks objects are created correctly  .  
+ -  I have developed a test which will check if stocks objects are created correctly .  
  
  -  Input logic was created .
+ 
+ -  I have developed a test for a common dividend .
+ 
+ -  Common dividend was implemented .	
+ 
+ -  Same steps were repeated for all the other financial data (p/e , VWSP etc .) 
+ 
  
  
  

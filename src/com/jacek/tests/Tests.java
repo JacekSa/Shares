@@ -75,6 +75,24 @@ public class Tests {
 
 	}
 	
+	@Test
+	public void testGeometricMean() throws JAXBException {
+
+		BigDecimal lastDividend = new BigDecimal(134.09);
+		BigDecimal price = new BigDecimal(55.02);
+		
+		BigDecimal result = new BigDecimal(2.437113776808433220487854856184401463085156322);
+		
+		Stock stock = new Stock();
+		stock.setLastDivident(lastDividend);
+		stock.setPrice(price);
+		
+		new DataCalculator().calculateDividendYieldCommon(stock);
+		
+		assertTrue(new DataCalculator().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
+
+	}
+	
 	
 
 }

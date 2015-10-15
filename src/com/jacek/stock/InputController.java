@@ -9,6 +9,8 @@ public class InputController {
 	String transactionType;
 	String input;
 	boolean transactionsFinished;
+	DataCalculator calculator = new DataCalculator();
+	
 	TransactionRepository repo = TransactionRepository.getInstance();
 	
 	public InputController() throws Exception{
@@ -71,7 +73,6 @@ public class InputController {
 			transactionType = "B";
 			
 		} else {
-			
 			throw new Exception("Unknown transaction type");
 		}
 		
@@ -84,10 +85,22 @@ public class InputController {
 		BigDecimal bdec = new BigDecimal(scanner.nextLine());
 		stock.setPrice(bdec);
 		
+		if(transactionType.equals("S"))
+		
+		stock.setIndicator(TradeIndicator.Sell);
+		
+		else if(transactionType.equals("B")){
+		
+	    stock.setIndicator(TradeIndicator.Buy);
+			
+		}
+		
 		/*
 		 * Calculate the dividend etc. and save it in a stock object
 		 * 
 		 */
+		
+		stock.setDividentYield(calculator.calculateDividendYieldCommon(stock));
 		
 		
 		repo.openTransaction();

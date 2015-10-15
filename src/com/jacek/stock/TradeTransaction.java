@@ -12,26 +12,8 @@ import java.util.List;
 
 public class TradeTransaction {
 	
-	Date timestamp;
-	TradeIndicator indicator;
 	List<Stock> stocks;
 	
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public TradeIndicator getIndicator() {
-		return indicator;
-	}
-
-	public void setIndicator(TradeIndicator indicator) {
-		this.indicator = indicator;
-	}
-
 	public List<Stock> getStocks() {
 		return stocks;
 	}

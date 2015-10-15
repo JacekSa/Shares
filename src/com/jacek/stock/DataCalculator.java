@@ -2,6 +2,10 @@ package com.jacek.stock;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
+
+import org.apache.commons.math3.stat.descriptive.moment.GeometricMean;
+import org.apache.commons.math3.stat.descriptive.summary.SumOfLogs;
 
 /**
  *  The class is a utility for performing all
@@ -50,6 +54,30 @@ public class DataCalculator {
 	}
 	
 	
+	 public int calcVWSP(List<TradeTransaction> trades){
+			
+		  int quantity = 0;
+		  int priceQuanSum = 0;
+		  int quantitySum = 0;
+		  
+		  return priceQuanSum/quantitySum ;
+		  
+			
+		}
+	
+	
+	
+    public GeometricMean calcGeometricMean(double[] values){
+		
+	    SumOfLogs logs = new SumOfLogs();
+	    logs.evaluate(values);
+	
+		return new GeometricMean(logs);
+		
+	}
+    
+    
+
 	
 
 

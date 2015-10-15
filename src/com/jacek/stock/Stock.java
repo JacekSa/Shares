@@ -1,11 +1,10 @@
 package com.jacek.stock;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlRootElement(namespace = "com.jacek.stock.Stocks")
 
@@ -14,15 +13,43 @@ public class Stock {
  BigDecimal price = null;
  BigDecimal dividentYield = null;
  BigDecimal  peRatio = null;
- String  symbol = null;
+ BigDecimal  volumeWeightedStockPrice = null;
+ 
+ public BigDecimal getVolumeWeightedStockPrice() {
+	return volumeWeightedStockPrice;
+}
+
+public void setVolumeWeightedStockPrice(BigDecimal volumeWeightedStockPrice) {
+	this.volumeWeightedStockPrice = volumeWeightedStockPrice;
+}
+String  symbol = null;
  
  String type;
  BigDecimal lastDivident;
  String fixedDividend;
  String parValue;
+ 
+ Date timestamp;
+ TradeIndicator indicator;
 
  
  
+public Date getTimestamp() {
+	return timestamp;
+}
+
+public void setTimestamp(Date timestamp) {
+	this.timestamp = timestamp;
+}
+
+public TradeIndicator getIndicator() {
+	return indicator;
+}
+
+public void setIndicator(TradeIndicator indicator) {
+	this.indicator = indicator;
+}
+
 public String getType() {
 	return type;
 }

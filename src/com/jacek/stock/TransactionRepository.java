@@ -52,8 +52,6 @@ public class TransactionRepository {
 	}
 	
 	
-	
-	
     public void saveStock(Stock stock){
 		
 		/*
@@ -61,11 +59,9 @@ public class TransactionRepository {
 		 * 
 		 */
 		
-		
 		for(int i = 0 ; i<stocks.getStocks().size(); i++){
 			
 			if(stocks.getStocks().get(i).getSymbol().trim().equals(stock.getSymbol().trim())){
-				
 				
 			   stock.setLastDivident(stocks.getStocks().get(i).getLastDivident());
 			   stock.setFixedDividend(stocks.getStocks().get(i).getFixedDividend());
