@@ -1,6 +1,7 @@
 package com.jacek.stock;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.Unmarshaller;
@@ -18,6 +19,9 @@ public class TransactionRepository {
 	
 	List<TradeTransaction> trades = new ArrayList<>();
 	//List<Stock> stocks = new ArrayList<>();
+	
+    BigDecimal allSharedIndex ;
+	
 	Stocks stocks;
 	
 	Unmarshaller unmar;

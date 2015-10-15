@@ -1,6 +1,7 @@
 package com.jacek.stock;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputController {		
@@ -101,6 +102,12 @@ public class InputController {
 		 */
 		
 		stock.setDividentYield(calculator.calculateDividendYieldCommon(stock));
+		stock.setPeRatio(calculator.calculatePERatio(stock));
+		
+		List<TradeTransaction> trades = repo.getTrades();
+		
+		stock.setVolumeWeightedStockPrice(calculator.calcVWSP(trades));
+		
 		
 		
 		repo.openTransaction();

@@ -2,8 +2,10 @@ package com.jacek.stock;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.descriptive.moment.GeometricMean;
 import org.apache.commons.math3.stat.descriptive.summary.SumOfLogs;
 
@@ -35,10 +37,10 @@ public class DataCalculator {
 			
 	}
 	
-	public BigDecimal calculatePERatio(String price ,String dividend ){
+	public BigDecimal calculatePERatio(Stock stock){
 		
-		BigDecimal priceDecimal = new BigDecimal(price);
-		BigDecimal dividendDecimal = new BigDecimal(price);
+		BigDecimal priceDecimal = stock.getPrice();
+		BigDecimal dividendDecimal = stock.getLastDivident();
 		
 		BigDecimal ratio = priceDecimal.divide(dividendDecimal,RoundingMode.HALF_DOWN);
 	
@@ -47,30 +49,45 @@ public class DataCalculator {
 	}
 	
 	
-	public BigDecimal calculateAllShareIndex(){
+	public GeometricMean calculateAllShareIndex(List<TradeTransaction> trades){
 		
-		return null;
+		double[] values;
+		ArrayList<Double> list = new ArrayList<>();
+		
+		for(TradeTransaction trade : trades) {
+			
+			for(Stock s : trade.getStocks()){
+			  list.add(s.getPrice().doubleValue());
+			}
+			
+		}
+		
+		return calcGeometricMean(list);
 		
 	}
 	
 	
-	 public int calcVWSP(List<TradeTransaction> trades){
+	 public BigDecimal calcVWSP(List<TradeTransaction> trades){
 			
 		  int quantity = 0;
 		  int priceQuanSum = 0;
 		  int quantitySum = 0;
 		  
-		  return priceQuanSum/quantitySum ;
+		  return new  BigDecimal(quantitySum) ;
 		  
 			
 		}
 	
 	
 	
-    public GeometricMean calcGeometricMean(double[] values){
+    public GeometricMean calcGeometricMean(ArrayList<Double> list){
 		
 	    SumOfLogs logs = new SumOfLogs();
-	    logs.evaluate(values);
+	    
+	    Double[] stockArr ;
+	    stockArr = (Double[]) list.toArray(new Double[list.size()]);
+	    
+	    logs.evaluate(ArrayUtils.toPrimitive(stockArr) , 0, stockArr.length);
 	
 		return new GeometricMean(logs);
 		
