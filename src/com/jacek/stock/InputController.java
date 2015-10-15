@@ -1,8 +1,11 @@
 package com.jacek.stock;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import com.jacek.abstraction.DataCalculator;
 
 public class InputController {		
 	
@@ -10,7 +13,7 @@ public class InputController {
 	String transactionType;
 	String input;
 	boolean transactionsFinished;
-	DataCalculator calculator = new DataCalculator();
+	DataCalculator calculator = new DataCalculatorImpl();
 	
 	TransactionRepository repo = TransactionRepository.getInstance();
 	
@@ -81,6 +84,7 @@ public class InputController {
 		input = scanner.nextLine();
 		Stock stock = new Stock();
 		stock.setSymbol(input);
+		stock.setTimestamp(new Date());
 		
 		System.out.println("Type in the Stock price :");
 		BigDecimal bdec = new BigDecimal(scanner.nextLine());

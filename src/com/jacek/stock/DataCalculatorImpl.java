@@ -9,6 +9,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.descriptive.moment.GeometricMean;
 import org.apache.commons.math3.stat.descriptive.summary.SumOfLogs;
 
+import com.jacek.abstraction.DataCalculator;
+
 /**
  *  The class is a utility for performing all
  *  the stock related calculations
@@ -18,16 +20,19 @@ import org.apache.commons.math3.stat.descriptive.summary.SumOfLogs;
  */
 
 
-public class DataCalculator {
+public class DataCalculatorImpl implements DataCalculator {
 	
 	
 	
+	@Override
 	public BigDecimal   calculateDividendYieldCommon(Stock stock){
 			
 		return stock.getLastDivident().divide(stock.getPrice(),RoundingMode.UP);
 			
 	}
 	
+	
+	@Override
 	public BigDecimal   calculateDividendYieldPreffered(Stock stock){
 		
 		BigDecimal fixDivid = new BigDecimal(stock.getFixedDividend());
@@ -37,6 +42,8 @@ public class DataCalculator {
 			
 	}
 	
+	
+	@Override
 	public BigDecimal calculatePERatio(Stock stock){
 		
 		BigDecimal priceDecimal = stock.getPrice();
@@ -49,8 +56,9 @@ public class DataCalculator {
 	}
 	
 	
+	
+	@Override
 	public double calculateAllShareIndex(List<TradeTransaction> trades){
-		
 		
 		ArrayList<Double> list = new ArrayList<>();
 		
@@ -67,20 +75,34 @@ public class DataCalculator {
 	}
 	
 	
-	 public BigDecimal calcVWSP(List<TradeTransaction> trades){
+	
+	@Override
+	public BigDecimal calcVWSP(List<TradeTransaction> trades){
 			
 		  int quantity = 0;
-		  int priceQuanSum = 0;
+		  BigDecimal priceQuanSum = null ;
 		  int quantitySum = 0;
+			
+		  Integer i = 0;
+			for(TradeTransaction trade : trades) {
+				
+				for(Stock s : trade.getStocks()){
+				 
+					priceQuanSum = priceQuanSum.add(s.getPrice().multiply(new BigDecimal(i.toString())));
+					i++;
+				}
+				
+			}
+		 
+		 
 		  
 		  return new  BigDecimal(quantitySum) ;
 		  
 			
 		}
 	
-	
-	
-    public double calcGeometricMean(ArrayList<Double> list){
+    @Override
+	public double calcGeometricMean(ArrayList<Double> list){
 		
 	    SumOfLogs logs = new SumOfLogs();
 	    

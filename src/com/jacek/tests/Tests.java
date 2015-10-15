@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBException;
 
 import org.junit.Test;
 
-import com.jacek.stock.DataCalculator;
+import com.jacek.stock.DataCalculatorImpl;
 import com.jacek.stock.Stock;
 import com.jacek.stock.TradeTransaction;
 import com.jacek.stock.TransactionRepository;
@@ -69,9 +69,9 @@ public class Tests {
 		stock.setLastDivident(lastDividend);
 		stock.setPrice(price);
 		
-		new DataCalculator().calculateDividendYieldCommon(stock);
+		new DataCalculatorImpl().calculateDividendYieldCommon(stock);
 		
-		assertTrue(new DataCalculator().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
+		assertTrue(new DataCalculatorImpl().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
 
 	}
 	
@@ -87,9 +87,9 @@ public class Tests {
 		stock.setLastDivident(lastDividend);
 		stock.setPrice(price);
 		
-		new DataCalculator().calculateDividendYieldCommon(stock);
+		new DataCalculatorImpl().calculateDividendYieldCommon(stock);
 		
-		assertTrue(new DataCalculator().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
+		assertTrue(new DataCalculatorImpl().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
 
 	}
 	

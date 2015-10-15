@@ -1,12 +1,12 @@
 package com.jacek.stock;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;	
+
 /**
  * The class emulates a database.
  * The trades are kept in a collection .
@@ -20,8 +20,17 @@ public class TransactionRepository {
 	List<TradeTransaction> trades = new ArrayList<>();
 	//List<Stock> stocks = new ArrayList<>();
 	
-    BigDecimal allSharedIndex ;
+    double allSharedIndex ;
 	
+	public double getAllSharedIndex() {
+		return allSharedIndex;
+	}
+
+
+	public void setAllSharedIndex(double d) {
+		this.allSharedIndex = d;
+	}
+
 	Stocks stocks;
 	
 	Unmarshaller unmar;
@@ -91,10 +100,6 @@ public class TransactionRepository {
 		transaction = null;
 		
 	}
-	
-	
-	
-	
 	
 	
 	public List<TradeTransaction> getTrades() {

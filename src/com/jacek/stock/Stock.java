@@ -14,6 +14,14 @@ public class Stock {
  BigDecimal dividentYield = null;
  BigDecimal  peRatio = null;
  BigDecimal  volumeWeightedStockPrice = null;
+ String  symbol = null;
+ String type;
+ BigDecimal lastDivident;
+ String fixedDividend;
+ String parValue;
+ 
+ Date timestamp;
+ TradeIndicator indicator;
  
  public BigDecimal getVolumeWeightedStockPrice() {
 	return volumeWeightedStockPrice;
@@ -22,18 +30,8 @@ public class Stock {
 public void setVolumeWeightedStockPrice(BigDecimal volumeWeightedStockPrice) {
 	this.volumeWeightedStockPrice = volumeWeightedStockPrice;
 }
-String  symbol = null;
- 
- String type;
- BigDecimal lastDivident;
- String fixedDividend;
- String parValue;
- 
- Date timestamp;
- TradeIndicator indicator;
 
- 
- 
+
 public Date getTimestamp() {
 	return timestamp;
 }
