@@ -27,6 +27,7 @@ public class DataCalculatorImpl implements DataCalculator {
 	@Override
 	public BigDecimal   calculateDividendYieldCommon(Stock stock){
 			
+		System.out.println(stock.getLastDivident());
 		return stock.getLastDivident().divide(stock.getPrice(),RoundingMode.UP);
 			
 	}
