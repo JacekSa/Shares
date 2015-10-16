@@ -23,7 +23,6 @@ public class DataCalculatorImpl implements DataCalculator {
 	@Override
 	public BigDecimal calculateDividendYieldCommon(Stock stock) {
 
-
 		if (stock.getLastDivident() == null) {
 
 			return new BigDecimal(0);
@@ -71,7 +70,10 @@ public class DataCalculatorImpl implements DataCalculator {
 		for (TradeTransaction trade : trades) {
 
 			for (Stock s : trade.getStocks()) {
-				list.add(s.getPrice().doubleValue());
+
+				if (s.getPrice() != null) {
+					list.add(s.getPrice().doubleValue());
+				}
 			}
 
 		}
@@ -84,22 +86,23 @@ public class DataCalculatorImpl implements DataCalculator {
 	public BigDecimal calcVWSP(List<TradeTransaction> trades) {
 
 		BigDecimal priceQuanSum = new BigDecimal(0);
-		
+
 		Integer i = 1;
 		for (TradeTransaction trade : trades) {
 
 			for (Stock s : trade.getStocks()) {
-				
-			if(s.getPrice()!= null) {	
-				
-				priceQuanSum = priceQuanSum.add(s.getPrice().multiply(new BigDecimal(i.toString())));
-				
-				i++;
-			}
+
+				if (s.getPrice() != null) {
+
+					priceQuanSum = priceQuanSum.add(s.getPrice().multiply(new BigDecimal(i.toString())));
+
+					i++;
+				}
 			}
 
 		}
 
+		
 		return priceQuanSum;
 
 	}
@@ -119,7 +122,7 @@ public class DataCalculatorImpl implements DataCalculator {
 
 		mean.setSumLogImpl(logs);
 
-		return mean.evaluate(ArrayUtils.toPrimitive(stockArr),0, stockArr.length);
+		return mean.evaluate(ArrayUtils.toPrimitive(stockArr), 0, stockArr.length);
 
 	}
 

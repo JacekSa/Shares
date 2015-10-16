@@ -13,7 +13,7 @@
  - The application should be modular which each module responsible for a single piece of functionality :
    Financial data calculation , Trades , Stock , Data Input Module .
    
-   Using a divide and conquer strategy allows to address all the requirements one by one , developing
+ - Using a divide and conquer strategy allows to address all the requirements one by one , developing
    the code in each of the modules .
    
  - Transaction repository is a singleton .  
@@ -32,7 +32,7 @@
  
  -  Same steps were repeated for all the other financial data (p/e , VWSP etc .) 
  
- -  The data is not displayed in the console as there is no such requirement . Calculated figures are stored in the memory .
+ -  The data is not displayed in the console as there is no such requirement . Calculated figures are stored in memory .
  
  
  
