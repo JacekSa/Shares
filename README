@@ -1,7 +1,7 @@
  
  After reading the requirements the following assumptions were made :
  
- - User needs to be able to insert a price . A console based output will be provided .
+ - User needs to be able to insert a price . A console based input/output will be provided .
  - Each time a user inserts a data for a stock (price,symbol) it is a sale/buy action .
  and the sale/buy indicator must be provided .
  
