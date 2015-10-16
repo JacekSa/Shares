@@ -8,6 +8,16 @@ import java.util.Scanner;
 
 import com.jacek.abstraction.DataCalculator;
 
+/**
+ * 
+ *  The class provides an input for the application 
+ *  It controls the input sequence .
+ * 
+ * @author Jacek
+ *
+ */
+
+
 public class InputController {
 
 	Scanner scanner;

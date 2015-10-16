@@ -8,6 +8,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
 
+/**
+ *  The class is mapped to an XML file containing
+ *  the stocks
+ * 
+ * @author Jacek
+ *
+ */
+
 @XmlRootElement(name="stocks")
 public class Stocks {
 	

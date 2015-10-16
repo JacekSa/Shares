@@ -8,6 +8,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(namespace = "com.jacek.stock.Stocks")
 
+/**
+ *  The class represents a single stock
+ * 
+ * @author Jacek
+ *
+ */
+
 public class Stock {
 	
  BigDecimal price = null;
