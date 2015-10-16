@@ -18,7 +18,6 @@ import javax.xml.bind.JAXBException;
 public class TransactionRepository {
 	
 	List<TradeTransaction> trades = new ArrayList<>();
-	//List<Stock> stocks = new ArrayList<>();
 	
     double allSharedIndex ;
 	
@@ -46,9 +45,6 @@ public class TransactionRepository {
 		unmar = jc.createUnmarshaller();
 		stocks = (Stocks) unmar.unmarshal(new File("Stocks.xml"));
 			
-		
-			
-		
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			

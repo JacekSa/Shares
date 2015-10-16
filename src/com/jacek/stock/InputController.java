@@ -89,7 +89,18 @@ public class InputController {
 		System.out.println("Type in the Stock symbol : ");
 		input = scanner.nextLine();
 		Stock stock = new Stock();
+		
+		if(Utilities.validateStockSymbol(input)){
+		
 		stock.setSymbol(input);
+		
+		} else {
+			
+	    System.out.println("Unknown stock symbol  ");
+	    System.exit(0);
+			
+		}
+		
 		stock.setTimestamp(new Date());
 
 		System.out.println("Type in the Stock price :");
