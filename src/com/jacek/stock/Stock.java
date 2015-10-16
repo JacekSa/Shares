@@ -83,7 +83,7 @@ public void setParValue(String parValue) {
 	this.parValue = parValue;
 }
 	
- // shares , buy or sell indicator , traded price .
+
  
 public String getSymbol() {
 	return symbol;

@@ -130,6 +130,10 @@ public class TransactionRepository {
 	public void setUnmar(Unmarshaller unmar) {
 		this.unmar = unmar;
 	}
+	
+	public void cleanTrades() {
+		trades.clear();
+	}
 
 	private static TransactionRepository instance = null;
 	

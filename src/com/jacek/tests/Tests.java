@@ -3,6 +3,8 @@ package com.jacek.tests;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
@@ -19,7 +21,9 @@ public class Tests {
 	public void testTransactions() throws JAXBException {
 
 		TransactionRepository repo = TransactionRepository.getInstance();
-		TradeTransaction transaction = new TradeTransaction();
+		
+		repo.cleanTrades();
+		
 		repo.openTransaction();
 
 		Stock stock = new Stock();
@@ -31,15 +35,17 @@ public class Tests {
 		repo.closeTransaction();
 
 		int i = repo.getTrades().size();
-
+	
 		assertTrue(i == 1);
 
 	}
 
 	@Test
-	public void testSto() throws JAXBException {
+	public void testStock() throws JAXBException {
 
 		TransactionRepository repo = TransactionRepository.getInstance();
+		
+		repo.cleanTrades();
 
 		repo.openTransaction();
 
@@ -53,7 +59,7 @@ public class Tests {
 
 		int i = repo.getTrades().get(0).getStocks().size();
 
-		assertTrue(i == 2);
+		assertTrue(i == 1);
 
 	}
 	
@@ -78,20 +84,53 @@ public class Tests {
 	@Test
 	public void testGeometricMean() throws JAXBException {
 
-		BigDecimal lastDividend = new BigDecimal(134.09);
-		BigDecimal price = new BigDecimal(55.02);
-		
-		BigDecimal result = new BigDecimal(2.437113776808433220487854856184401463085156322);
-		
-		Stock stock = new Stock();
-		stock.setLastDivident(lastDividend);
-		stock.setPrice(price);
-		
-		new DataCalculatorImpl().calculateDividendYieldCommon(stock);
-		
-		assertTrue(new DataCalculatorImpl().calculateDividendYieldCommon(stock).setScale(6,BigDecimal.ROUND_UP).equals(result.setScale(6,BigDecimal.ROUND_UP)));
+		ArrayList<Double> list = new ArrayList<>();
+		list.add(new Double(4.5));
+		list.add(new Double(8.5));
+			
+		double result = 6.184658438426491;
+	
+		assertTrue(new DataCalculatorImpl().calcGeometricMean(list) == result);
 
 	}
+	
+	@Test
+	public void testPEratio() {
+
+		Stock stock = new Stock();
+		stock.setPrice(new BigDecimal(100));
+		stock.setLastDivident(new BigDecimal(100));
+		
+		assertTrue(new DataCalculatorImpl().calculatePERatio(stock).equals(new BigDecimal(1).setScale(0,BigDecimal.ROUND_UP)));
+
+	}
+	
+	@Test
+	public void testVWSP() {
+
+		Stock stock = new Stock();
+		stock.setPrice(new BigDecimal(100));
+		stock.setLastDivident(new BigDecimal(100));
+		
+		Stock stock2 = new Stock();
+		stock.setPrice(new BigDecimal(100));
+		stock.setLastDivident(new BigDecimal(100));
+		
+		List<TradeTransaction> trades = new ArrayList<TradeTransaction>();
+		
+		TradeTransaction trans = new TradeTransaction();
+		trans.addStock(stock);
+		trans.addStock(stock2);
+		
+		trades.add(trans);
+		
+		assertTrue(new DataCalculatorImpl().calcVWSP(trades).equals(new BigDecimal(100).setScale(0,BigDecimal.ROUND_UP)));
+
+	}
+	
+	
+	
+	
 	
 	
 
