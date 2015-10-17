@@ -10,13 +10,12 @@ import com.jacek.abstraction.DataCalculator;
 
 /**
  * 
- *  The class provides an input for the application 
- *  It controls the input sequence .
+ * The class provides an input for the application It controls the input
+ * sequence .
  * 
  * @author Jacek
  *
  */
-
 
 public class InputController {
 
@@ -73,6 +72,13 @@ public class InputController {
 
 	public void runTransaction() throws Exception {
 
+		System.out.println("Available stocks : ");
+
+		for (int i = 0; i < repo.getStocks().getStocks().size(); i++) {
+			System.out.println(repo.getStocks().getStocks().get(i).getSymbol().trim());
+
+		}
+
 		System.out.println("Sell or buy (Insert \"S\" or \"B\") ");
 		input = scanner.nextLine();
 
@@ -89,18 +95,16 @@ public class InputController {
 		System.out.println("Type in the Stock symbol : ");
 		input = scanner.nextLine();
 		Stock stock = new Stock();
-		
-		if(Utilities.validateStockSymbol(input)){
-		
-		stock.setSymbol(input);
-		
-		} else {
-			
-	    System.out.println("Unknown stock symbol  ");
-	    System.exit(0);
-			
+
+		while (!Utilities.validateStockSymbol(input)) {
+
+			System.out.println("Unknown stock symbol  ");
+			System.out.println("Type in the Stock symbol : ");
+			input = scanner.nextLine();
+
 		}
-		
+
+		stock.setSymbol(input);
 		stock.setTimestamp(new Date());
 
 		System.out.println("Type in the Stock price :");
@@ -127,13 +131,16 @@ public class InputController {
 
 		List<TradeTransaction> trades = repo.getTrades();
 
-		stock.setVolumeWeightedStockPrice(calculator.calcVWSP(trades));
-
-		Utilities.removeOldTrades(trades);
+		stock.setVolumeWeightedStockPrice(calculator.calcVWSP(Utilities.getTradesFromTimeInterval(trades, 15)));
 
 		repo.setAllSharedIndex(calculator.calculateAllShareIndex(trades));
 
 		repo.openTransaction();
+
+		System.out.println(" Dividend Yield: " + stock.getDividentYield() + " PE Ratio : " + stock.getPeRatio()
+				+ " Volume Weighted Stock Price : " + stock.getVolumeWeightedStockPrice() + " All Shared Index : "
+				+ repo.getAllSharedIndex());
+
 		repo.saveStock(stock);
 		System.out.println("Continue transaction (Insert \"Y\" or \"N\") ?");
 		input = scanner.nextLine();

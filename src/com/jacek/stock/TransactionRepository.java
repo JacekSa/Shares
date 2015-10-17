@@ -19,7 +19,7 @@ public class TransactionRepository {
 	
 	List<TradeTransaction> trades = new ArrayList<>();
 	
-    double allSharedIndex ;
+    private double allSharedIndex ;
 	
 	public double getAllSharedIndex() {
 		return allSharedIndex;

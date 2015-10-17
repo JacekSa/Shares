@@ -13,8 +13,8 @@ import javax.xml.bind.JAXBException;
  */
 
 public class Utilities {
-
-	public static void removeOldTrades(List<TradeTransaction> trades) {
+	
+	public static List<TradeTransaction> getTradesFromTimeInterval (List<TradeTransaction> trades , int minutes) {
 
 		Date currentTimeStamp = new Date();
 
@@ -22,7 +22,7 @@ public class Utilities {
 
 			for (Stock s : trade.getStocks()) {
 
-				if (currentTimeStamp.compareTo(s.getTimestamp()) >= 15) {
+				if (currentTimeStamp.compareTo(s.getTimestamp()) >= minutes) {
 
 					trade.getStocks().remove(s);
 
@@ -31,6 +31,7 @@ public class Utilities {
 			}
 
 		}
+		return trades;
 	}
 
 	public static boolean validateStockSymbol(String symbol) throws JAXBException {

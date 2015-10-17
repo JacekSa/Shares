@@ -34,8 +34,9 @@
  
  -  The data is not displayed in the console as there is no such requirement . Calculated figures are stored in memory .
  
+    When running from console the lib folder must be provided :
  
- 
+    bin>  java -cp ../lib/*:. com.jacek.stock.Run
  
   
   

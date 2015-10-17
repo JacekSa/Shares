@@ -25,7 +25,7 @@ public class DataCalculatorImpl implements DataCalculator {
 
 		if (stock.getLastDivident() == null) {
 
-			return new BigDecimal(0);
+			stock.setLastDivident(new BigDecimal(1));
 		}
 
 		return stock.getLastDivident().divide(stock.getPrice(), RoundingMode.UP);
@@ -51,7 +51,7 @@ public class DataCalculatorImpl implements DataCalculator {
 
 		if (dividendDecimal == null) {
 
-			ratio = new BigDecimal(0);
+			ratio = new BigDecimal(1);
 		} else {
 
 			ratio = priceDecimal.divide(dividendDecimal, RoundingMode.HALF_DOWN);
@@ -102,7 +102,6 @@ public class DataCalculatorImpl implements DataCalculator {
 
 		}
 
-		
 		return priceQuanSum;
 
 	}
